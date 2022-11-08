@@ -1,40 +1,37 @@
 package org.example.entity;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
+import org.hibernate.annotations.SelectBeforeUpdate;
+
 import javax.persistence.*;
 
 @Entity
 @Getter
 @Setter
+@NoArgsConstructor
+@SelectBeforeUpdate
+@ToString(of = {"firstName", "lastName", "age"})
 @Table(name = "users")
 public class User  {
+
     @Id
-    @Column(name = "id")
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    @Column(name = "first_name")
+    @Column(nullable = false)
     private String firstName;
-    @Column(name = "last_name")
+    @Column(nullable = false)
     private String lastName;
-    @Column(name = "age")
+    @Column(nullable = false)
     private int age;
 
-    public User(){}
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "userAddress_id", nullable = false)
+    private UserAddress userAddress;
 
-    public User(String firstName, String lastName, int age){
+    public User(String firstName, String lastName, int age, UserAddress userAddress){
         this.firstName = firstName;
         this.lastName = lastName;
         this.age = age;
-    }
-
-    @Override
-    public String toString() {
-        return "User{" +
-                "id=" + id +
-                ", firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", age=" + age +
-                '}';
+        this.userAddress = userAddress;
     }
 }

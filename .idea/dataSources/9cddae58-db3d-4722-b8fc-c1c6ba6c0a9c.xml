@@ -3,9 +3,9 @@
   <database-model serializer="dbm" dbms="POSTGRES" family-id="POSTGRES" format-version="4.43">
     <root id="1">
       <DateStyle>dmy</DateStyle>
-      <IntrospectionStateNumber>2460</IntrospectionStateNumber>
+      <IntrospectionStateNumber>3287</IntrospectionStateNumber>
       <ServerVersion>14.5</ServerVersion>
-      <StartupTime>1667746248</StartupTime>
+      <StartupTime>1667916973</StartupTime>
       <TimeZones>true ACDT
 true ACSST
 false ACST
@@ -1399,8 +1399,11 @@ false posixrules
 13435||10|C|G
 13435||-9223372036854775808|U|G
 13435||10|U|G</Grants>
-      <IntrospectionStateNumber>2460</IntrospectionStateNumber>
+      <IntrospectionStateNumber>3287</IntrospectionStateNumber>
       <ObjectId>16390</ObjectId>
+      <Relations>sequence|table|19274|19275|1
+sequence|table|19283|19284|1
+</Relations>
       <OwnerName>postgres</OwnerName>
     </database>
     <database id="3" parent="1" name="MyBase">
@@ -4833,63 +4836,147 @@ false posixrules
     <schema id="264" parent="2" name="public">
       <Comment>standard public schema</Comment>
       <Current>1</Current>
-      <IntrospectionStateNumber>2460</IntrospectionStateNumber>
+      <IntrospectionStateNumber>3287</IntrospectionStateNumber>
       <ObjectId>2200</ObjectId>
       <StateNumber>526</StateNumber>
       <OwnerName>postgres</OwnerName>
     </schema>
     <sequence id="265" parent="264" name="hibernate_sequence">
       <DataType>bigint|0s</DataType>
-      <ObjectId>18128</ObjectId>
-      <StateNumber>2453</StateNumber>
+      <ObjectId>19108</ObjectId>
+      <StateNumber>3174</StateNumber>
       <OwnerName>postgres</OwnerName>
     </sequence>
-    <table id="266" parent="264" name="users">
-      <ObjectId>18129</ObjectId>
-      <StateNumber>2454</StateNumber>
+    <sequence id="266" parent="264" name="useraddress_id_seq">
+      <DataType>integer|0s</DataType>
+      <ObjectId>19274</ObjectId>
+      <StateNumber>3279</StateNumber>
+      <OwnerName>postgres</OwnerName>
+    </sequence>
+    <sequence id="267" parent="264" name="users_id_seq">
+      <DataType>integer|0s</DataType>
+      <ObjectId>19283</ObjectId>
+      <StateNumber>3280</StateNumber>
+      <OwnerName>postgres</OwnerName>
+    </sequence>
+    <table id="268" parent="264" name="useraddress">
+      <ObjectId>19275</ObjectId>
+      <StateNumber>3281</StateNumber>
       <AccessMethodId>2</AccessMethodId>
       <OwnerName>postgres</OwnerName>
     </table>
-    <column id="267" parent="266" name="id">
+    <table id="269" parent="264" name="users">
+      <ObjectId>19284</ObjectId>
+      <StateNumber>3281</StateNumber>
+      <AccessMethodId>2</AccessMethodId>
+      <OwnerName>postgres</OwnerName>
+    </table>
+    <column id="270" parent="268" name="id">
       <DataType>integer|0s</DataType>
+      <DefaultExpression>nextval(&apos;useraddress_id_seq&apos;::regclass)</DefaultExpression>
       <NotNull>1</NotNull>
       <Position>1</Position>
-      <StateNumber>2454</StateNumber>
+      <StateNumber>3279</StateNumber>
       <TypeId>23</TypeId>
     </column>
-    <column id="268" parent="266" name="age">
-      <DataType>integer|0s</DataType>
+    <column id="271" parent="268" name="city">
+      <DataType>varchar(255)|0s</DataType>
+      <NotNull>1</NotNull>
       <Position>2</Position>
-      <StateNumber>2454</StateNumber>
+      <StateNumber>3279</StateNumber>
+      <TypeId>1043</TypeId>
+    </column>
+    <column id="272" parent="268" name="house">
+      <DataType>integer|0s</DataType>
+      <NotNull>1</NotNull>
+      <Position>3</Position>
+      <StateNumber>3279</StateNumber>
       <TypeId>23</TypeId>
     </column>
-    <column id="269" parent="266" name="first_name">
+    <column id="273" parent="268" name="street">
       <DataType>varchar(255)|0s</DataType>
-      <Position>3</Position>
-      <StateNumber>2454</StateNumber>
-      <TypeId>1043</TypeId>
-    </column>
-    <column id="270" parent="266" name="last_name">
-      <DataType>varchar(255)|0s</DataType>
+      <NotNull>1</NotNull>
       <Position>4</Position>
-      <StateNumber>2454</StateNumber>
+      <StateNumber>3279</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <index id="271" parent="266" name="users_pkey">
+    <index id="274" parent="268" name="useraddress_pkey">
       <ColNames>id</ColNames>
       <NameSurrogate>1</NameSurrogate>
-      <ObjectId>18134</ObjectId>
+      <ObjectId>19281</ObjectId>
       <Primary>1</Primary>
-      <StateNumber>2454</StateNumber>
+      <StateNumber>3279</StateNumber>
       <Unique>1</Unique>
       <AccessMethodId>403</AccessMethodId>
     </index>
-    <key id="272" parent="266" name="users_pkey">
+    <key id="275" parent="268" name="useraddress_pkey">
       <NameSurrogate>1</NameSurrogate>
-      <ObjectId>18135</ObjectId>
+      <ObjectId>19282</ObjectId>
       <Primary>1</Primary>
-      <StateNumber>2454</StateNumber>
-      <UnderlyingIndexId>18134</UnderlyingIndexId>
+      <StateNumber>3279</StateNumber>
+      <UnderlyingIndexId>19281</UnderlyingIndexId>
+    </key>
+    <column id="276" parent="269" name="id">
+      <DataType>integer|0s</DataType>
+      <DefaultExpression>nextval(&apos;users_id_seq&apos;::regclass)</DefaultExpression>
+      <NotNull>1</NotNull>
+      <Position>1</Position>
+      <StateNumber>3280</StateNumber>
+      <TypeId>23</TypeId>
+    </column>
+    <column id="277" parent="269" name="age">
+      <DataType>integer|0s</DataType>
+      <NotNull>1</NotNull>
+      <Position>2</Position>
+      <StateNumber>3280</StateNumber>
+      <TypeId>23</TypeId>
+    </column>
+    <column id="278" parent="269" name="firstname">
+      <DataType>varchar(255)|0s</DataType>
+      <NotNull>1</NotNull>
+      <Position>3</Position>
+      <StateNumber>3280</StateNumber>
+      <TypeId>1043</TypeId>
+    </column>
+    <column id="279" parent="269" name="lastname">
+      <DataType>varchar(255)|0s</DataType>
+      <NotNull>1</NotNull>
+      <Position>4</Position>
+      <StateNumber>3280</StateNumber>
+      <TypeId>1043</TypeId>
+    </column>
+    <column id="280" parent="269" name="useraddress_id">
+      <DataType>integer|0s</DataType>
+      <NotNull>1</NotNull>
+      <Position>5</Position>
+      <StateNumber>3280</StateNumber>
+      <TypeId>23</TypeId>
+    </column>
+    <foreign-key id="281" parent="269" name="fkp4mstof83oq86s2mrxsygt3a6">
+      <ColNames>useraddress_id</ColNames>
+      <ObjectId>19292</ObjectId>
+      <RefColNames>id</RefColNames>
+      <RefColPositions>1</RefColPositions>
+      <StateNumber>3281</StateNumber>
+      <RefTableId>19275</RefTableId>
+      <RefTableName>useraddress</RefTableName>
+      <RefTableKind>table</RefTableKind>
+    </foreign-key>
+    <index id="282" parent="269" name="users_pkey">
+      <ColNames>id</ColNames>
+      <NameSurrogate>1</NameSurrogate>
+      <ObjectId>19290</ObjectId>
+      <Primary>1</Primary>
+      <StateNumber>3280</StateNumber>
+      <Unique>1</Unique>
+      <AccessMethodId>403</AccessMethodId>
+    </index>
+    <key id="283" parent="269" name="users_pkey">
+      <NameSurrogate>1</NameSurrogate>
+      <ObjectId>19291</ObjectId>
+      <Primary>1</Primary>
+      <StateNumber>3280</StateNumber>
+      <UnderlyingIndexId>19290</UnderlyingIndexId>
     </key>
   </database-model>
 </dataSource>
